@@ -9,7 +9,16 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Scaffold(body: Column(children: []));
+    return Scaffold(
+        body: Column(children: [
+      const Text('Hello, World!'),
+    ]));
   }
 }
