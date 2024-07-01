@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:gengar_dex/sdk/tcgdex.dart';
+
+import '../../../sdk/Models/card_tcg.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -10,8 +13,13 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   void initState() {
-    // TODO: implement initState
+    init();
     super.initState();
+  }
+
+  init() async {
+    CardTCG card = await TCGDex().getCard('swsh3-136');
+    print(card.name);
   }
 
   @override
