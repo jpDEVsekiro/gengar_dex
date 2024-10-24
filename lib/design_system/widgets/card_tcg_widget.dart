@@ -25,7 +25,11 @@ class CardTcgWidget extends StatelessWidget {
                   color: Colors.grey[300]!,
                 ),
               ),
-              errorWidget: (context, url, error) => const Icon(Icons.error),
+              errorWidget: (context, url, error) {
+                print(url);
+                print(error);
+                return const Icon(Icons.error);
+              },
             ),
           ),
           Text(cardTCGBrief.name ?? ''),

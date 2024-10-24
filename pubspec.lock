@@ -193,14 +193,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.3"
-  cupertino_icons:
-    dependency: "direct main"
-    description:
-      name: cupertino_icons
-      sha256: ba631d1c7f7bef6b729a622b7b752645a2d076dba9976925b8f25725a30e1ee6
-      url: "https://pub.dev"
-    source: hosted
-    version: "1.0.8"
   dart_style:
     dependency: transitive
     description:
@@ -262,14 +254,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.3.2"
-  flutter_lints:
-    dependency: "direct dev"
-    description:
-      name: flutter_lints
-      sha256: "9e8c3858111da373efc5aa341de011d9bd23e2c5c5e0c62bccf32438e192d7b1"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.2"
   flutter_mobx:
     dependency: "direct main"
     description:
@@ -395,14 +379,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.0.1"
-  lints:
-    dependency: transitive
-    description:
-      name: lints
-      sha256: cbf8d4b858bb0134ef3ef87841abdf8d63bfc255c266b7bf6b39daa1085c4290
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.0.0"
   logging:
     dependency: transitive
     description:
@@ -808,22 +784,6 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "3.10.0"
-  widgetbook_annotation:
-    dependency: "direct main"
-    description:
-      name: widgetbook_annotation
-      sha256: "08570e3568275c4c283cdf78409c125f86c96c9b4f94f0a390d6a163349e9934"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.2.0"
-  widgetbook_generator:
-    dependency: "direct dev"
-    description:
-      name: widgetbook_generator
-      sha256: "5967de405c3e7e3d4ef56239c7b23f0affd69b181f7d041f8101f0fbdb9d4e2c"
-      url: "https://pub.dev"
-    source: hosted
-    version: "3.9.0"
   win32:
     dependency: transitive
     description:
