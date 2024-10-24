@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gengar_dex/app/modules/home/store/listing_store.dart';
-import 'package:gengar_dex/app/widgets/card_tcg_widget.dart';
+import 'package:gengar_dex/design_system/widgets/card_tcg_widget.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 
 class HomePage extends StatefulWidget {
