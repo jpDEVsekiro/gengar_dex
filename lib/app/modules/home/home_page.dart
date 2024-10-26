@@ -38,12 +38,15 @@ class _HomePageState extends State<HomePage> {
                   card1 = store.listCards[index * 2];
                   card2 = store.listCards[index * 2 + 1];
                 }
-                return Row(
-                  children: [
-                    CardTcgWidget(cardTCGBrief: card1),
-                    const SizedBox(width: 10),
-                    CardTcgWidget(cardTCGBrief: card2),
-                  ],
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 8),
+                  child: Row(
+                    children: [
+                      CardTcgWidget(cardTCGBrief: card1),
+                      const SizedBox(width: 10),
+                      CardTcgWidget(cardTCGBrief: card2),
+                    ],
+                  ),
                 );
               }),
         );
