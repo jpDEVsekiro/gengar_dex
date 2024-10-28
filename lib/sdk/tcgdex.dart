@@ -9,16 +9,16 @@ class TCGDex {
   static const String _baseUrl = 'https://api.tcgdex.net/v2';
 
   http.Client client = http.Client();
-  String urlGetCard = '$_baseUrl/pt/cards';
-  String urlGetSetCards = '$_baseUrl/pt/sets';
+  static const _urlGetCard = '$_baseUrl/pt/cards';
+  static const _urlGetSetCards = '$_baseUrl/pt/sets';
 
   Future<CardTCG> getCard(String code) async {
-    final response = await _get(Uri.parse(('$urlGetCard/$code')));
+    final response = await _get(Uri.parse(('$_urlGetCard/$code')));
     return CardTCG.fromJson(json.decode(response.body));
   }
 
   Future<List<CardTCGBrief>> getSetCards(String code) async {
-    final response = await _get(Uri.parse('$urlGetSetCards/$code'));
+    final response = await _get(Uri.parse('$_urlGetSetCards/$code'));
     List<dynamic> cards = json.decode(response.body)['cards'];
     return cards.map((card) => CardTCGBrief.fromJson(card)).toList();
   }
