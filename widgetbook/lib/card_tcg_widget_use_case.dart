@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:gengar_dex/design_system/widgets/card_tcg_widget.dart';
+import 'package:gengar_dex/app/design_system/widgets/card_tcg_widget.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 import 'package:gengar_dex/sdk/enums/card_image_quality.dart';
 import 'package:widgetbook_annotation/widgetbook_annotation.dart' as widgetbook;

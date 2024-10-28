@@ -4,9 +4,9 @@ import 'package:mobx/mobx.dart';
 
 part 'listing_store.g.dart';
 
-class ListingStore = ListingStoreBase with _$ListingStore;
+class ListingStore = _ListingStoreBase with _$ListingStore;
 
-abstract class ListingStoreBase with Store {
+abstract class _ListingStoreBase with Store {
   @observable
   ObservableList<CardTCGBrief> listCards = ObservableList<CardTCGBrief>();
 
