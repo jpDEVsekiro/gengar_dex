@@ -10,7 +10,7 @@ part of 'listing_store.dart';
 
 mixin _$ListingStore on _ListingStoreBase, Store {
   late final _$listCardsAtom =
-      Atom(name: 'ListingStoreBase.listCards', context: context);
+      Atom(name: '_ListingStoreBase.listCards', context: context);
 
   @override
   ObservableList<CardTCGBrief> get listCards {
@@ -25,17 +25,17 @@ mixin _$ListingStore on _ListingStoreBase, Store {
     });
   }
 
-  late final _$ListingStoreBaseActionController =
-      ActionController(name: 'ListingStoreBase', context: context);
+  late final _$_ListingStoreBaseActionController =
+      ActionController(name: '_ListingStoreBase', context: context);
 
   @override
   void setList(List<CardTCGBrief> value) {
-    final _$actionInfo = _$ListingStoreBaseActionController.startAction(
-        name: 'ListingStoreBase.setList');
+    final _$actionInfo = _$_ListingStoreBaseActionController.startAction(
+        name: '_ListingStoreBase.setList');
     try {
       return super.setList(value);
     } finally {
-      _$ListingStoreBaseActionController.endAction(_$actionInfo);
+      _$_ListingStoreBaseActionController.endAction(_$actionInfo);
     }
   }
 

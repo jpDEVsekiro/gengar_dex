@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gengar_dex/app/modules/card_details/store/card_details_store.dart';
+import 'package:gengar_dex/app/modules/card_details/widgets/about_card_box.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 import 'package:gengar_dex/sdk/enums/card_image_quality.dart';
 import 'package:shimmer/shimmer.dart';
@@ -47,6 +49,9 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
               },
             ),
           ),
+          Observer(builder: (context) {
+            return AboutCardBox(cardTCG: store.cardTCG);
+          })
         ],
       ),
     );
