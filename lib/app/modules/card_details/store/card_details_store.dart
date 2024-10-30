@@ -16,5 +16,6 @@ abstract class _CardDetailsBase with Store {
   @action
   init(CardTCGBrief cardTCGBrief) async {
     cardTCG = await tcgDex.getCard(cardTCGBrief.id!);
+    tcgDex.getSets();
   }
 }

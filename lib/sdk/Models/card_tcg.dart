@@ -146,7 +146,7 @@ class Attack {
   final List<String>? cost;
   final String? name;
   final String? effect;
-  final int? damage;
+  final dynamic damage;
 
   Attack({
     this.cost,
