@@ -25,15 +25,42 @@ mixin _$ListingStore on _ListingStoreBase, Store {
     });
   }
 
+  late final _$listSetsAtom =
+      Atom(name: '_ListingStoreBase.listSets', context: context);
+
+  @override
+  ObservableList<SetTcg> get listSets {
+    _$listSetsAtom.reportRead();
+    return super.listSets;
+  }
+
+  @override
+  set listSets(ObservableList<SetTcg> value) {
+    _$listSetsAtom.reportWrite(value, super.listSets, () {
+      super.listSets = value;
+    });
+  }
+
   late final _$_ListingStoreBaseActionController =
       ActionController(name: '_ListingStoreBase', context: context);
 
   @override
-  void setList(List<CardTCGBrief> value) {
+  void addListCardsValue(List<CardTCGBrief> value) {
     final _$actionInfo = _$_ListingStoreBaseActionController.startAction(
-        name: '_ListingStoreBase.setList');
+        name: '_ListingStoreBase.addListCardsValue');
     try {
-      return super.setList(value);
+      return super.addListCardsValue(value);
+    } finally {
+      _$_ListingStoreBaseActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void addListSetValue(List<SetTcg> value) {
+    final _$actionInfo = _$_ListingStoreBaseActionController.startAction(
+        name: '_ListingStoreBase.addListSetValue');
+    try {
+      return super.addListSetValue(value);
     } finally {
       _$_ListingStoreBaseActionController.endAction(_$actionInfo);
     }
@@ -42,7 +69,8 @@ mixin _$ListingStore on _ListingStoreBase, Store {
   @override
   String toString() {
     return '''
-listCards: ${listCards}
+listCards: ${listCards},
+listSets: ${listSets}
     ''';
   }
 }

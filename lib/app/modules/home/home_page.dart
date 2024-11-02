@@ -4,6 +4,7 @@ import 'package:gengar_dex/app/design_system/widgets/card_tcg_widget.dart';
 import 'package:gengar_dex/app/modules/card_details/card_details_page.dart';
 import 'package:gengar_dex/app/modules/home/store/listing_store.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
+import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -23,11 +24,35 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Column(children: [
-      Observer(builder: (context) {
-        return Expanded(
-          child: ListView.builder(
+        body: SingleChildScrollView(
+      child: Column(children: [
+        SizedBox(
+          height: MediaQuery.of(context).padding.top,
+        ),
+        InkWell(
+          onTap: () {
+            showMaterialModalBottomSheet(
+              context: context,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(30),
+                  topRight: Radius.circular(30),
+                ),
+              ),
+              builder: (context) => Container(
+                height: MediaQuery.of(context).size.height -
+                    MediaQuery.of(context).padding.top -
+                    5,
+              ),
+            );
+          },
+          child: Icon(Icons.filter_alt),
+        ),
+        Observer(builder: (context) {
+          return ListView.builder(
+              shrinkWrap: true,
               cacheExtent: 0,
+              physics: NeverScrollableScrollPhysics(),
               itemCount: (store.listCards.length / 2).ceil(),
               itemBuilder: (context, index) {
                 CardTCGBrief? card1;
@@ -63,9 +88,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 );
-              }),
-        );
-      })
-    ]));
+              });
+        })
+      ]),
+    ));
   }
 }
