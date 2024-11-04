@@ -1,6 +1,6 @@
 class SetTcg {
   final String id;
-  final String? logo;
+  String? logo;
   final int? cardTotal;
   final String name;
 

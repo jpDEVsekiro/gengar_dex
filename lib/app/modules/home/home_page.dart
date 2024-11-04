@@ -3,6 +3,7 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:gengar_dex/app/design_system/widgets/card_tcg_widget.dart';
 import 'package:gengar_dex/app/modules/card_details/card_details_page.dart';
 import 'package:gengar_dex/app/modules/home/store/listing_store.dart';
+import 'package:gengar_dex/app/modules/home/widgets/sets_filter_modal.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 
@@ -39,10 +40,8 @@ class _HomePageState extends State<HomePage> {
                   topRight: Radius.circular(30),
                 ),
               ),
-              builder: (context) => Container(
-                height: MediaQuery.of(context).size.height -
-                    MediaQuery.of(context).padding.top -
-                    5,
+              builder: (context) => SetsFilterModal(
+                listSets: store.listSets,
               ),
             );
           },
