@@ -4,14 +4,17 @@ import 'package:gengar_dex/sdk/Models/set_tcg.dart';
 import 'package:shimmer/shimmer.dart';
 
 class SetCard extends StatelessWidget {
-  const SetCard({super.key, required this.set, this.onTap});
+  const SetCard(
+      {super.key, required this.set, this.onTap, required this.isSelect});
   final SetTcg set;
   final void Function()? onTap;
+  final bool isSelect;
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
+    return Container(
       width: (MediaQuery.sizeOf(context).width / 2) - 13,
+      color: isSelect ? Colors.grey[300] : Colors.transparent,
       child: Column(
         children: [
           InkWell(
