@@ -31,8 +31,8 @@ class _HomePageState extends State<HomePage> {
           height: MediaQuery.of(context).padding.top,
         ),
         InkWell(
-          onTap: () {
-            showMaterialModalBottomSheet(
+          onTap: () async {
+            store.setSelectedSet(await showMaterialModalBottomSheet(
               context: context,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
@@ -43,7 +43,7 @@ class _HomePageState extends State<HomePage> {
               builder: (context) => SetsFilterModal(
                 listSets: store.listSets,
               ),
-            );
+            ));
           },
           child: Icon(Icons.filter_alt),
         ),

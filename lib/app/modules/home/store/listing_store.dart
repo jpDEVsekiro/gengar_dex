@@ -13,6 +13,8 @@ abstract class _ListingStoreBase with Store {
   @observable
   ObservableList<SetTcg> listSets = ObservableList<SetTcg>();
 
+  SetTcg? selectedSet;
+
   TCGDex sdk = TCGDex();
 
   @action
@@ -29,8 +31,18 @@ abstract class _ListingStoreBase with Store {
 
   init() async {
     List<SetTcg> valuesSets = await sdk.getSets();
-    List<CardTCGBrief> valuesCards = await sdk.getSetCards(valuesSets.last.id);
+    List<CardTCGBrief> valuesCards =
+        await sdk.getSetCards(selectedSet?.id ?? valuesSets.last.id);
     addListSetValue(valuesSets);
     addListCardsValue(valuesCards);
+  }
+
+  @action
+  void setSelectedSet(SetTcg? value) {
+    if (selectedSet?.id == value?.id) {
+      return;
+    }
+    selectedSet = value;
+    init();
   }
 }

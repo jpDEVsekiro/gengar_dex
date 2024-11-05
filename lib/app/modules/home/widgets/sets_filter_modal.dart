@@ -22,63 +22,91 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
       height: MediaQuery.of(context).size.height -
           MediaQuery.of(context).padding.top -
           5,
-      child: SingleChildScrollView(
-        child: Column(
-          children: [
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Sets',
-                style: TextStyle(fontSize: 20),
+      child: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(
+                      'Sets',
+                      style: TextStyle(fontSize: 20),
+                    ),
+                  ),
+                  ListView.builder(
+                      shrinkWrap: true,
+                      cacheExtent: 0,
+                      itemCount: (listSets.length / 2).ceil(),
+                      physics: NeverScrollableScrollPhysics(),
+                      itemBuilder: (context, index) {
+                        SetTcg? set1;
+                        SetTcg? set2;
+                        if (index == 0) {
+                          set1 = listSets[0];
+                          set2 = listSets[1];
+                        } else {
+                          set1 = listSets.elementAtOrNull(index * 2);
+                          set2 = listSets.elementAtOrNull(index * 2 + 1);
+                        }
+                        return Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 8),
+                          child: Row(
+                            children: [
+                              if (set1 != null)
+                                Observer(builder: (context) {
+                                  return SetCard(
+                                      set: set1!,
+                                      isSelect:
+                                          store.selectedSet?.id == set1.id,
+                                      onTap: () {
+                                        store.setSelectedSet(set1!);
+                                      });
+                                }),
+                              const SizedBox(width: 10),
+                              if (set2 != null)
+                                Observer(builder: (context) {
+                                  return SetCard(
+                                      set: set2!,
+                                      isSelect:
+                                          store.selectedSet?.id == set2.id,
+                                      onTap: () {
+                                        store.setSelectedSet(set2!);
+                                      });
+                                }),
+                            ],
+                          ),
+                        );
+                      }),
+                  SizedBox(
+                    height: 50,
+                  )
+                ],
               ),
             ),
-            ListView.builder(
-                shrinkWrap: true,
-                cacheExtent: 0,
-                itemCount: (listSets.length / 2).ceil(),
-                physics: NeverScrollableScrollPhysics(),
-                itemBuilder: (context, index) {
-                  SetTcg? set1;
-                  SetTcg? set2;
-                  if (index == 0) {
-                    set1 = listSets[0];
-                    set2 = listSets[1];
-                  } else {
-                    set1 = listSets.elementAtOrNull(index * 2);
-                    set2 = listSets.elementAtOrNull(index * 2 + 1);
-                  }
-                  return Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 8),
-                    child: Row(
-                      children: [
-                        if (set1 != null)
-                          Observer(builder: (context) {
-                            return SetCard(
-                                set: set1!,
-                                isSelect: store.selectedSet?.id == set1.id,
-                                onTap: () {
-                                  store.setSelectedSet(set1!);
-                                });
-                          }),
-                        const SizedBox(width: 10),
-                        if (set2 != null)
-                          Observer(builder: (context) {
-                            return SetCard(
-                                set: set2!,
-                                isSelect: store.selectedSet?.id == set2.id,
-                                onTap: () {
-                                  store.setSelectedSet(set2!);
-                                });
-                          }),
-                      ],
-                    ),
-                  );
-                }),
-            SizedBox(
-              height: 50,
-            )
-          ],
-        ),
+          ),
+          Container(
+            color: Colors.white,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: Text('Cancel'),
+                ),
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context, store.selectedSet);
+                  },
+                  child: Text('Apply'),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
