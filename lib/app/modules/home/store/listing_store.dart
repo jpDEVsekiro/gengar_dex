@@ -38,11 +38,11 @@ abstract class _ListingStoreBase with Store {
   }
 
   @action
-  void setSelectedSet(SetTcg? value) {
+  Future<void> setSelectedSet(SetTcg? value) async {
     if (selectedSet?.id == value?.id) {
       return;
     }
     selectedSet = value;
-    init();
+    await init();
   }
 }

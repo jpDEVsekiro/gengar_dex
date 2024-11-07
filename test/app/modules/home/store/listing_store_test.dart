@@ -11,4 +11,14 @@ void main() {
     expect(store.listCards.first.id?.contains(store.listSets.last.id),
         equals(true));
   });
+
+  test('Test ListingStore.setSelectedSet', () async {
+    await store.init();
+    await store.setSelectedSet(store.listSets.last);
+    expect(store.listCards.isNotEmpty, equals(true));
+    expect(store.listSets.isNotEmpty, equals(true));
+    expect(store.listSets.first.id, equals('base1'));
+    expect(store.listCards.first.id?.contains(store.listSets.last.id),
+        equals(true));
+  });
 }
