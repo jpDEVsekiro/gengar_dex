@@ -45,6 +45,12 @@ class TCGDex {
     return sets;
   }
 
+  Future<List<CardTCGBrief>> searchCards(String search) async {
+    final response = await _get(Uri.parse('$_urlGetCardEN?name=$search'));
+    List<dynamic> cards = json.decode(response.body);
+    return cards.map((card) => CardTCGBrief.fromJson(card)).toList();
+  }
+
   Future<http.Response> _get(Uri uri) async {
     DateTime now = DateTime.now();
     http.Response response = await client.get(uri);

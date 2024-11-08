@@ -30,6 +30,15 @@ class _HomePageState extends State<HomePage> {
         SizedBox(
           height: MediaQuery.of(context).padding.top,
         ),
+        TextFormField(
+          onChanged: (value) {
+            store.searchCards(value);
+          },
+          decoration: InputDecoration(
+            hintText: 'Search',
+            suffixIcon: Icon(Icons.search),
+          ),
+        ),
         InkWell(
           onTap: () async {
             store.setSelectedSet(await showMaterialModalBottomSheet(

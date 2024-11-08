@@ -45,4 +45,12 @@ abstract class _ListingStoreBase with Store {
     selectedSet = value;
     await init();
   }
+
+  @action
+  void searchCards(String value) async {
+    if (value.isEmpty) return;
+    List<CardTCGBrief> result = await sdk.searchCards(value);
+    selectedSet = null;
+    addListCardsValue(result);
+  }
 }
