@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:collection/collection.dart';
 import 'package:flutter/foundation.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
@@ -22,9 +23,21 @@ class TCGDex {
   }
 
   Future<List<CardTCGBrief>> getSetCards(String code) async {
-    final response = await _get(Uri.parse('$_urlGetSetCardsPT/$code'));
+    final response = await _get(Uri.parse('$_urlGetSetCardsEN/$code'));
+    final responsePT = await _get(Uri.parse('$_urlGetSetCardsPT/$code'));
     List<dynamic> cards = json.decode(response.body)['cards'];
-    return cards.map((card) => CardTCGBrief.fromJson(card)).toList();
+    List<CardTCGBrief> value =
+        cards.map((card) => CardTCGBrief.fromJson(card)).toList();
+    List<dynamic> cardsPT = json.decode(responsePT.body)['cards'];
+    List<CardTCGBrief> valuePT =
+        cardsPT.map((card) => CardTCGBrief.fromJson(card)).toList();
+    for (int i = 0; i < value.length; i++) {
+      CardTCGBrief? card =
+          valuePT.firstWhereOrNull((test) => test.id == value[i].id);
+      if (card != null && card.image != null) value[i] = card;
+    }
+    value.removeWhere((element) => element.image == null);
+    return value;
   }
 
   Future<List<SetTcg>> getSets() async {
@@ -48,7 +61,10 @@ class TCGDex {
   Future<List<CardTCGBrief>> searchCards(String search) async {
     final response = await _get(Uri.parse('$_urlGetCardEN?name=$search'));
     List<dynamic> cards = json.decode(response.body);
-    return cards.map((card) => CardTCGBrief.fromJson(card)).toList();
+    List<CardTCGBrief> value =
+        cards.map((card) => CardTCGBrief.fromJson(card)).toList();
+    value.removeWhere((element) => element.image == null);
+    return value;
   }
 
   Future<http.Response> _get(Uri uri) async {

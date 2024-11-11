@@ -2,7 +2,7 @@ class CardTCGBrief {
   final String? id;
   final String? localId;
   final String? name;
-  final String? image;
+  String? image;
 
   CardTCGBrief({
     this.id,

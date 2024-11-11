@@ -25,42 +25,41 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: SingleChildScrollView(
-      child: Column(children: [
-        SizedBox(
-          height: MediaQuery.of(context).padding.top,
+        body: Column(children: [
+      SizedBox(
+        height: MediaQuery.of(context).padding.top,
+      ),
+      TextFormField(
+        controller: store.searchController,
+        onChanged: (value) {
+          store.searchCards(value);
+        },
+        decoration: InputDecoration(
+          hintText: 'Search',
+          suffixIcon: Icon(Icons.search),
         ),
-        TextFormField(
-          onChanged: (value) {
-            store.searchCards(value);
-          },
-          decoration: InputDecoration(
-            hintText: 'Search',
-            suffixIcon: Icon(Icons.search),
-          ),
-        ),
-        InkWell(
-          onTap: () async {
-            store.setSelectedSet(await showMaterialModalBottomSheet(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
-                ),
+      ),
+      InkWell(
+        onTap: () async {
+          store.setSelectedSet(await showMaterialModalBottomSheet(
+            context: context,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(30),
+                topRight: Radius.circular(30),
               ),
-              builder: (context) => SetsFilterModal(
-                listSets: store.listSets,
-              ),
-            ));
-          },
-          child: Icon(Icons.filter_alt),
-        ),
-        Observer(builder: (context) {
-          return ListView.builder(
+            ),
+            builder: (context) => SetsFilterModal(
+              listSets: store.listSets,
+            ),
+          ));
+        },
+        child: Icon(Icons.filter_alt),
+      ),
+      Observer(builder: (context) {
+        return Expanded(
+          child: ListView.builder(
               shrinkWrap: true,
-              cacheExtent: 0,
-              physics: NeverScrollableScrollPhysics(),
               itemCount: (store.listCards.length / 2).ceil(),
               itemBuilder: (context, index) {
                 CardTCGBrief? card1;
@@ -96,9 +95,9 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 );
-              });
-        })
-      ]),
-    ));
+              }),
+        );
+      })
+    ]));
   }
 }

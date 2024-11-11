@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 import 'package:gengar_dex/sdk/Models/set_tcg.dart';
 import 'package:gengar_dex/sdk/tcgdex.dart';
@@ -12,6 +13,8 @@ abstract class _ListingStoreBase with Store {
   ObservableList<CardTCGBrief> listCards = ObservableList<CardTCGBrief>();
   @observable
   ObservableList<SetTcg> listSets = ObservableList<SetTcg>();
+
+  TextEditingController searchController = TextEditingController();
 
   SetTcg? selectedSet;
 
@@ -48,7 +51,13 @@ abstract class _ListingStoreBase with Store {
 
   @action
   void searchCards(String value) async {
-    if (value.isEmpty) return;
+    await Future.delayed(Duration(milliseconds: 500));
+    if (value != searchController.text) return;
+    if (value.isEmpty) {
+      init();
+      return;
+    }
+    selectedSet = null;
     List<CardTCGBrief> result = await sdk.searchCards(value);
     selectedSet = null;
     addListCardsValue(result);
