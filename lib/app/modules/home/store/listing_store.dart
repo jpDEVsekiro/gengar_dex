@@ -11,8 +11,12 @@ class ListingStore = _ListingStoreBase with _$ListingStore;
 abstract class _ListingStoreBase with Store {
   @observable
   ObservableList<CardTCGBrief> listCards = ObservableList<CardTCGBrief>();
+
   @observable
   ObservableList<SetTcg> listSets = ObservableList<SetTcg>();
+
+  @observable
+  String searchText = '';
 
   TextEditingController searchController = TextEditingController();
 
@@ -50,7 +54,8 @@ abstract class _ListingStoreBase with Store {
   }
 
   @action
-  void searchCards(String value) async {
+  Future<void> searchCards(String value) async {
+    searchText = value;
     await Future.delayed(Duration(milliseconds: 500));
     if (value != searchController.text) return;
     if (value.isEmpty) {
@@ -58,7 +63,7 @@ abstract class _ListingStoreBase with Store {
       return;
     }
     selectedSet = null;
-    List<CardTCGBrief> result = await sdk.searchCards(value);
+    List<CardTCGBrief> result = await sdk.searchCards(searchController.text);
     selectedSet = null;
     addListCardsValue(result);
   }

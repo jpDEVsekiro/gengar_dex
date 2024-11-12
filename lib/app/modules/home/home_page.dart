@@ -27,16 +27,38 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
         body: Column(children: [
       SizedBox(
-        height: MediaQuery.of(context).padding.top,
+        height: MediaQuery.of(context).padding.top + 15,
       ),
-      TextFormField(
-        controller: store.searchController,
-        onChanged: (value) {
-          store.searchCards(value);
-        },
-        decoration: InputDecoration(
-          hintText: 'Search',
-          suffixIcon: Icon(Icons.search),
+      Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 8),
+        child: TextField(
+          controller: store.searchController,
+          onChanged: (value) {
+            store.searchCards(value);
+          },
+          decoration: InputDecoration(
+            prefixIcon: Icon(Icons.search),
+            suffixIcon: Observer(builder: (context) {
+              if (store.searchText.trim() == '')
+                return SizedBox(
+                  height: 0,
+                  width: 0,
+                );
+              return InkWell(
+                onTap: () {
+                  store.searchController.clear();
+                  store.searchCards('');
+                },
+                child: Icon(
+                  Icons.clear,
+                ),
+              );
+            }),
+            hintText: 'Search',
+            hintStyle:
+                TextStyle(color: Colors.black45, fontWeight: FontWeight.w400),
+            border: OutlineInputBorder(),
+          ),
         ),
       ),
       InkWell(

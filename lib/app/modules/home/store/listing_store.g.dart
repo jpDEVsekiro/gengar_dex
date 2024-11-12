@@ -41,6 +41,38 @@ mixin _$ListingStore on _ListingStoreBase, Store {
     });
   }
 
+  late final _$searchTextAtom =
+      Atom(name: '_ListingStoreBase.searchText', context: context);
+
+  @override
+  String get searchText {
+    _$searchTextAtom.reportRead();
+    return super.searchText;
+  }
+
+  @override
+  set searchText(String value) {
+    _$searchTextAtom.reportWrite(value, super.searchText, () {
+      super.searchText = value;
+    });
+  }
+
+  late final _$setSelectedSetAsyncAction =
+      AsyncAction('_ListingStoreBase.setSelectedSet', context: context);
+
+  @override
+  Future<void> setSelectedSet(SetTcg? value) {
+    return _$setSelectedSetAsyncAction.run(() => super.setSelectedSet(value));
+  }
+
+  late final _$searchCardsAsyncAction =
+      AsyncAction('_ListingStoreBase.searchCards', context: context);
+
+  @override
+  Future<void> searchCards(String value) {
+    return _$searchCardsAsyncAction.run(() => super.searchCards(value));
+  }
+
   late final _$_ListingStoreBaseActionController =
       ActionController(name: '_ListingStoreBase', context: context);
 
@@ -70,7 +102,8 @@ mixin _$ListingStore on _ListingStoreBase, Store {
   String toString() {
     return '''
 listCards: ${listCards},
-listSets: ${listSets}
+listSets: ${listSets},
+searchText: ${searchText}
     ''';
   }
 }
