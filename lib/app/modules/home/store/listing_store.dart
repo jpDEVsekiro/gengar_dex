@@ -18,9 +18,10 @@ abstract class _ListingStoreBase with Store {
   @observable
   String searchText = '';
 
-  TextEditingController searchController = TextEditingController();
-
+  @observable
   SetTcg? selectedSet;
+
+  TextEditingController searchController = TextEditingController();
 
   TCGDex sdk = TCGDex();
 

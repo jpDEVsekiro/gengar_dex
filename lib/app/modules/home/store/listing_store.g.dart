@@ -57,6 +57,22 @@ mixin _$ListingStore on _ListingStoreBase, Store {
     });
   }
 
+  late final _$selectedSetAtom =
+      Atom(name: '_ListingStoreBase.selectedSet', context: context);
+
+  @override
+  SetTcg? get selectedSet {
+    _$selectedSetAtom.reportRead();
+    return super.selectedSet;
+  }
+
+  @override
+  set selectedSet(SetTcg? value) {
+    _$selectedSetAtom.reportWrite(value, super.selectedSet, () {
+      super.selectedSet = value;
+    });
+  }
+
   late final _$setSelectedSetAsyncAction =
       AsyncAction('_ListingStoreBase.setSelectedSet', context: context);
 
@@ -103,7 +119,8 @@ mixin _$ListingStore on _ListingStoreBase, Store {
     return '''
 listCards: ${listCards},
 listSets: ${listSets},
-searchText: ${searchText}
+searchText: ${searchText},
+selectedSet: ${selectedSet}
     ''';
   }
 }

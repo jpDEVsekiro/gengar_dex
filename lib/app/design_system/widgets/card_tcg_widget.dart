@@ -15,7 +15,7 @@ class CardTcgWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      width: (MediaQuery.sizeOf(context).width / 2) - 13,
+      width: (MediaQuery.sizeOf(context).width / 2) - 24,
       child: Column(
         children: [
           SizedBox(
