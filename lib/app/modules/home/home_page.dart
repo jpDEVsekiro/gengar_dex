@@ -106,6 +106,7 @@ class _HomePageState extends State<HomePage> {
                     card2 = store.listCards.elementAtOrNull(index * 2 + 1);
                   }
                   return Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       if (card1 != null)
                         InkWell(

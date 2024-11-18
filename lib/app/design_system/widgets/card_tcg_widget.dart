@@ -14,35 +14,69 @@ class CardTcgWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: (MediaQuery.sizeOf(context).width / 2) - 24,
-      child: Column(
-        children: [
-          SizedBox(
-            height: (MediaQuery.sizeOf(context).width / 1.5),
-            child: Hero(
-              tag: cardTCGBrief.id ?? '',
-              child: CachedNetworkImage(
-                imageUrl: '${(cardTCGBrief.image ?? '') + quality.toString()}',
-                placeholder: (context, url) => Shimmer.fromColors(
-                  baseColor: Colors.transparent,
-                  highlightColor: Colors.black12,
-                  child: Container(
-                    color: Colors.grey[300]!,
-                  ),
-                ),
-                errorWidget: (context, url, error) {
-                  print(url);
-                  print(error);
-                  return const Icon(Icons.error);
-                },
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 16),
+      child: Container(
+        width: (MediaQuery.sizeOf(context).width / 2) - 24,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          color: const Color(0x40C8FFBF),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.05),
+              spreadRadius: 1,
+              blurRadius: 2,
+              offset: const Offset(0, 2),
+            ),
+          ],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(
+              height: 8,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8),
+              child: Text(
+                '${cardTCGBrief.localId ?? ''} - ${cardTCGBrief.name ?? ''}',
+                textAlign: TextAlign.start,
               ),
             ),
-          ),
-          Text(cardTCGBrief.name ?? ''),
-          Text(cardTCGBrief.id ?? ''),
-          Text(cardTCGBrief.localId ?? ''),
-        ],
+            SizedBox(
+              height: 4,
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 7),
+              child: Hero(
+                tag: cardTCGBrief.id ?? '',
+                child: CachedNetworkImage(
+                  fit: BoxFit.fitWidth,
+                  imageUrl:
+                      '${(cardTCGBrief.image ?? '') + quality.toString()}',
+                  placeholder: (context, url) => SizedBox(
+                    height: (MediaQuery.sizeOf(context).width / 1.75),
+                    child: Shimmer.fromColors(
+                      baseColor: Colors.transparent,
+                      highlightColor: Colors.black12,
+                      child: Container(
+                        color: Colors.grey[300]!,
+                      ),
+                    ),
+                  ),
+                  errorWidget: (context, url, error) {
+                    print(url);
+                    print(error);
+                    return const Icon(Icons.error);
+                  },
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 8,
+            ),
+          ],
+        ),
       ),
     );
   }
