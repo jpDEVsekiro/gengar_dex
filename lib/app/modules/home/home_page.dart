@@ -66,8 +66,8 @@ class _HomePageState extends State<HomePage> {
               context: context,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(30),
-                  topRight: Radius.circular(30),
+                  topLeft: Radius.circular(16),
+                  topRight: Radius.circular(16),
                 ),
               ),
               builder: (context) => SetsFilterModal(

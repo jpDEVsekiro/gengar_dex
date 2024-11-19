@@ -21,23 +21,35 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
     return Container(
       height: MediaQuery.of(context).size.height -
           MediaQuery.of(context).padding.top -
-          5,
+          15,
       child: Column(
         children: [
           Expanded(
             child: SingleChildScrollView(
               child: Column(
                 children: [
-                  Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      'Sets',
-                      style: TextStyle(fontSize: 20),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.15,
+                    height: 5,
+                    decoration: BoxDecoration(
+                      color: Colors.grey[350],
+                      borderRadius: BorderRadius.circular(15),
                     ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Text(
+                    'Sets',
+                    style: TextStyle(fontSize: 20),
                   ),
                   ListView.builder(
                       shrinkWrap: true,
                       cacheExtent: 0,
+                      padding: const EdgeInsets.only(top: 8),
                       itemCount: (listSets.length / 2).ceil(),
                       physics: NeverScrollableScrollPhysics(),
                       itemBuilder: (context, index) {

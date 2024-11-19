@@ -20,7 +20,7 @@ class CardTcgWidget extends StatelessWidget {
         width: (MediaQuery.sizeOf(context).width / 2) - 24,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: const Color(0x40C8FFBF),
+          color: Color(0xFFC8FFBF).withOpacity(0.6),
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -41,6 +41,11 @@ class CardTcgWidget extends StatelessWidget {
               child: Text(
                 '${cardTCGBrief.localId ?? ''} - ${cardTCGBrief.name ?? ''}',
                 textAlign: TextAlign.start,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 12,
+                ),
               ),
             ),
             SizedBox(
