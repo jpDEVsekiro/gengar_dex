@@ -55,25 +55,29 @@ class CardTcgWidget extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 7),
               child: Hero(
                 tag: cardTCGBrief.id ?? '',
-                child: CachedNetworkImage(
-                  fit: BoxFit.fitWidth,
-                  imageUrl:
-                      '${(cardTCGBrief.image ?? '') + quality.toString()}',
-                  placeholder: (context, url) => SizedBox(
-                    height: (MediaQuery.sizeOf(context).width / 1.75),
-                    child: Shimmer.fromColors(
-                      baseColor: Colors.transparent,
-                      highlightColor: Colors.black12,
-                      child: Container(
-                        color: Colors.grey[300]!,
+                child: Container(
+                  height: (MediaQuery.sizeOf(context).width / 1.8),
+                  alignment: Alignment.center,
+                  child: CachedNetworkImage(
+                    fit: BoxFit.fitWidth,
+                    imageUrl:
+                        '${(cardTCGBrief.image ?? '') + quality.toString()}',
+                    placeholder: (context, url) => SizedBox(
+                      height: (MediaQuery.sizeOf(context).width / 1.7),
+                      child: Shimmer.fromColors(
+                        baseColor: Colors.transparent,
+                        highlightColor: Colors.black12,
+                        child: Container(
+                          color: Colors.grey[300]!,
+                        ),
                       ),
                     ),
+                    errorWidget: (context, url, error) {
+                      print(url);
+                      print(error);
+                      return const Icon(Icons.error);
+                    },
                   ),
-                  errorWidget: (context, url, error) {
-                    print(url);
-                    print(error);
-                    return const Icon(Icons.error);
-                  },
                 ),
               ),
             ),

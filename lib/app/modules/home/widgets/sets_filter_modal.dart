@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:gengar_dex/app/design_system/palette.dart';
 import 'package:gengar_dex/app/modules/home/store/sets_filter_store.dart';
 import 'package:gengar_dex/app/modules/home/widgets/set_card.dart';
 import 'package:gengar_dex/sdk/Models/set_tcg.dart';
 
 class SetsFilterModal extends StatefulWidget {
-  const SetsFilterModal({super.key, required this.listSets});
+  const SetsFilterModal({super.key, required this.listSets, this.selectedSet});
   final List<SetTcg> listSets;
+  final SetTcg? selectedSet;
 
   @override
   State<SetsFilterModal> createState() => _SetsFilterModalState();
@@ -21,7 +23,14 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
     return Container(
       height: MediaQuery.of(context).size.height -
           MediaQuery.of(context).padding.top -
-          15,
+          2,
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.only(
+          topLeft: Radius.circular(20),
+          topRight: Radius.circular(20),
+        ),
+      ),
       child: Column(
         children: [
           Expanded(
@@ -92,30 +101,69 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
                         );
                       }),
                   SizedBox(
-                    height: 50,
+                    height: 10,
                   )
                 ],
               ),
             ),
           ),
           Container(
-            color: Colors.white,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context);
-                  },
-                  child: Text('Cancel'),
-                ),
-                TextButton(
-                  onPressed: () {
-                    Navigator.pop(context, store.selectedSet);
-                  },
-                  child: Text('Apply'),
+            decoration: BoxDecoration(
+              color: Colors.white,
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black.withOpacity(0.2),
+                  blurRadius: 10,
+                  offset: Offset(0, -1),
                 ),
               ],
+            ),
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  InkWell(
+                      onTap: () {
+                        Navigator.pop(context);
+                      },
+                      child: Container(
+                        width: MediaQuery.of(context).size.width * 0.5 - 12,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Colors.red,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text('Voltar',
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold)),
+                      )),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  InkWell(
+                    onTap: () {
+                      Navigator.pop(context, store.selectedSet);
+                    },
+                    child: Container(
+                        width: MediaQuery.of(context).size.width * 0.5 - 12,
+                        height: 50,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          color: Palette.primary,
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        child: Text('Filtrar',
+                            style: TextStyle(
+                                color: Colors.grey[750],
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold))),
+                  ),
+                ],
+              ),
             ),
           )
         ],
