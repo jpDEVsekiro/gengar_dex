@@ -57,8 +57,9 @@ class SetCard extends StatelessWidget {
               set.name,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 13,
+                color: isSelect ? Colors.white : Colors.black,
                 fontWeight: FontWeight.w500,
               ),
             )

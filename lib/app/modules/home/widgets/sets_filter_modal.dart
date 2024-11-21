@@ -164,7 +164,7 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
                         ),
                         child: Text('Filtrar',
                             style: TextStyle(
-                                color: Colors.grey[750],
+                                color: Colors.white,
                                 fontSize: 18,
                                 fontWeight: FontWeight.bold))),
                   ),

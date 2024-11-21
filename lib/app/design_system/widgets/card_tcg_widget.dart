@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:gengar_dex/app/design_system/palette.dart';
 import 'package:gengar_dex/sdk/Models/card_tcg_brief.dart';
 import 'package:gengar_dex/sdk/enums/card_image_quality.dart';
 import 'package:shimmer/shimmer.dart';
@@ -17,10 +18,10 @@ class CardTcgWidget extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 16),
       child: Container(
-        width: (MediaQuery.sizeOf(context).width / 2) - 24,
+        width: (MediaQuery.sizeOf(context).width / 2) - 20,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(8),
-          color: Color(0xFFC8FFBF).withOpacity(0.6),
+          color: Palette.primary,
           boxShadow: [
             BoxShadow(
               color: Colors.black.withOpacity(0.05),
@@ -45,6 +46,9 @@ class CardTcgWidget extends StatelessWidget {
                 overflow: TextOverflow.ellipsis,
                 style: const TextStyle(
                   fontSize: 12,
+                  fontWeight: FontWeight.w500,
+                  letterSpacing: 0.5,
+                  color: Colors.white,
                 ),
               ),
             ),
