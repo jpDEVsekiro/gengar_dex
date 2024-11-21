@@ -51,6 +51,8 @@ abstract class _ListingStoreBase with Store {
       return;
     }
     selectedSet = value;
+    searchText = '';
+    searchController.clear();
     await init();
   }
 

@@ -28,66 +28,74 @@ class _HomePageState extends State<HomePage> {
         body: Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        SizedBox(
-          height: MediaQuery.of(context).padding.top + 15,
-        ),
-        TextField(
-          controller: store.searchController,
-          onChanged: (value) {
-            store.searchCards(value);
-          },
-          decoration: InputDecoration(
-            prefixIcon: Icon(Icons.search),
-            suffixIcon: Observer(builder: (context) {
-              if (store.searchText.trim() == '')
-                return SizedBox(
-                  height: 0,
-                  width: 0,
-                );
-              return InkWell(
-                onTap: () {
-                  store.searchController.clear();
-                  store.searchCards('');
+        Positioned(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              SizedBox(
+                height: MediaQuery.of(context).padding.top + 15,
+              ),
+              TextField(
+                controller: store.searchController,
+                onChanged: (value) {
+                  store.searchCards(value);
                 },
-                child: Icon(
-                  Icons.clear,
-                ),
-              );
-            }),
-            hintText: 'Search',
-            hintStyle:
-                TextStyle(color: Colors.black45, fontWeight: FontWeight.w400),
-            border: OutlineInputBorder(),
-          ),
-        ),
-        InkWell(
-          onTap: () async {
-            store.setSelectedSet(await showMaterialModalBottomSheet(
-              context: context,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.only(
-                  topLeft: Radius.circular(20),
-                  topRight: Radius.circular(20),
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  suffixIcon: Observer(builder: (context) {
+                    if (store.searchText.trim() == '')
+                      return SizedBox(
+                        height: 0,
+                        width: 0,
+                      );
+                    return InkWell(
+                      onTap: () {
+                        store.searchController.clear();
+                        store.searchCards('');
+                      },
+                      child: Icon(
+                        Icons.clear,
+                      ),
+                    );
+                  }),
+                  hintText: 'Search',
+                  hintStyle: TextStyle(
+                      color: Colors.black45, fontWeight: FontWeight.w400),
+                  border: OutlineInputBorder(),
                 ),
               ),
-              builder: (context) => SetsFilterModal(
-                listSets: store.listSets,
+              InkWell(
+                onTap: () async {
+                  store.setSelectedSet(await showMaterialModalBottomSheet(
+                    context: context,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                    ),
+                    builder: (context) => SetsFilterModal(
+                      listSets: store.listSets,
+                      selectedSet: store.selectedSet,
+                    ),
+                  ));
+                },
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8, bottom: 8),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      Icon(Icons.menu_rounded),
+                      const SizedBox(width: 5),
+                      Observer(builder: (context) {
+                        return Text(store.selectedSet?.name ?? 'Sets');
+                      }),
+                      const SizedBox(width: 5),
+                    ],
+                  ),
+                ),
               ),
-            ));
-          },
-          child: Padding(
-            padding: const EdgeInsets.only(top: 8, bottom: 8),
-            child: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Icon(Icons.menu_rounded),
-                const SizedBox(width: 5),
-                Observer(builder: (context) {
-                  return Text(store.selectedSet?.name ?? 'Sets');
-                }),
-                const SizedBox(width: 5),
-              ],
-            ),
+            ],
           ),
         ),
         Observer(builder: (context) {

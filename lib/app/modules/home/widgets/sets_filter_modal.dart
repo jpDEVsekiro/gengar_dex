@@ -19,6 +19,12 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
   List<SetTcg> get listSets => widget.listSets.reversed.toList();
 
   @override
+  void initState() {
+    if (widget.selectedSet != null) store.setSelectedSet(widget.selectedSet!);
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Container(
       height: MediaQuery.of(context).size.height -
