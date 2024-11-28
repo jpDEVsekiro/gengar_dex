@@ -65,22 +65,34 @@ class _HomePageState extends State<HomePage> {
                         );
                       return InkWell(
                         onTap: () {
+                          FocusScope.of(context).requestFocus(new FocusNode());
                           store.searchController.clear();
                           store.searchCards('');
                         },
                         child: Icon(
                           Icons.clear,
+                          color: Palette.secondary,
                         ),
                       );
                     }),
                     hintText: 'Search',
                     hintStyle: TextStyle(
-                        color: Colors.black45, fontWeight: FontWeight.w400),
-                    border: OutlineInputBorder(),
+                        color: Colors.black, fontWeight: FontWeight.w400),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide: BorderSide(color: Palette.disable, width: 1),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      borderSide:
+                          BorderSide(color: Palette.primary, width: 1.3),
+                    ),
+                    focusColor: Palette.primary,
                   ),
                 ),
                 InkWell(
                   onTap: () async {
+                    FocusScope.of(context).requestFocus(new FocusNode());
                     store.setSelectedSet(await showMaterialModalBottomSheet(
                       context: context,
                       shape: RoundedRectangleBorder(
@@ -142,7 +154,9 @@ class _HomePageState extends State<HomePage> {
                 children: [
                   if (card1 != null)
                     InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          await Future.delayed(Duration(milliseconds: 200));
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (builder) =>
                                   CardDetailsPage(cardTCGBrief: card1!)));
@@ -151,7 +165,9 @@ class _HomePageState extends State<HomePage> {
                   const SizedBox(width: 8),
                   if (card2 != null)
                     InkWell(
-                        onTap: () {
+                        onTap: () async {
+                          FocusScope.of(context).requestFocus(new FocusNode());
+                          await Future.delayed(Duration(milliseconds: 200));
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (builder) =>
                                   CardDetailsPage(cardTCGBrief: card2!)));
