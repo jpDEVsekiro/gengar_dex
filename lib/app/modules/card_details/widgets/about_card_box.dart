@@ -7,19 +7,20 @@ class AboutCardBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        SizedBox(
-          height: 8,
-        ),
-        Text(cardTCG?.hp.toString() ?? ''),
-        Text(cardTCG?.id.toString() ?? ''),
-        Text(cardTCG?.category.toString() ?? ''),
-        Text(cardTCG?.description.toString() ?? ''),
-        Text(cardTCG?.illustrator.toString() ?? ''),
-        Text(cardTCG?.types.toString() ?? ''),
-        Text(cardTCG?.weaknesses.toString() ?? ''),
-      ],
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 18),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(cardTCG?.hp.toString() ?? ''),
+          Text(cardTCG?.id.toString() ?? ''),
+          Text(cardTCG?.category.toString() ?? ''),
+          Text(cardTCG?.description.toString() ?? ''),
+          Text(cardTCG?.illustrator.toString() ?? ''),
+          Text(cardTCG?.types.toString() ?? ''),
+          Text(cardTCG?.weaknesses.toString() ?? ''),
+        ],
+      ),
     );
   }
 }
