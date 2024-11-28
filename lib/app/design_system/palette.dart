@@ -1,6 +1,7 @@
-import 'dart:ui';
+import 'package:flutter/material.dart';
 
 class Palette {
   static Color get primary => Color(0xFF5CB764).withOpacity(0.9);
-  //static Color get primary => Color(0xFF5CB764).withOpacity(0.6); verde gard
+  static Color get secondary => Colors.red;
+  static Color get white => Colors.white;
 }

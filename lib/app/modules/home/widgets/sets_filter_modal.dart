@@ -47,7 +47,7 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
                     height: 10,
                   ),
                   Container(
-                    width: MediaQuery.of(context).size.width * 0.15,
+                    width: MediaQuery.of(context).size.width * 0.14,
                     height: 5,
                     decoration: BoxDecoration(
                       color: Colors.grey[350],
@@ -57,9 +57,38 @@ class _SetsFilterModalState extends State<SetsFilterModal> {
                   SizedBox(
                     height: 10,
                   ),
-                  Text(
-                    'Sets',
-                    style: TextStyle(fontSize: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Spacer(),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 34),
+                        child: Text(
+                          'Sets',
+                          style: TextStyle(fontSize: 20),
+                        ),
+                      ),
+                      Spacer(),
+                      InkWell(
+                        onTap: () {
+                          Navigator.pop(context);
+                        },
+                        child: Container(
+                          width: 20,
+                          height: 20,
+                          margin: const EdgeInsets.only(right: 18),
+                          decoration: BoxDecoration(
+                            color: Palette.secondary,
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: Icon(
+                            Icons.close,
+                            size: 18,
+                            color: Palette.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                   ListView.builder(
                       shrinkWrap: true,
