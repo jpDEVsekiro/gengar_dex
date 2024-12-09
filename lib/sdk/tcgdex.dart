@@ -19,7 +19,18 @@ class TCGDex {
 
   Future<CardTCG> getCard(String code) async {
     final response = await _get(Uri.parse(('$_urlGetCardPT/$code')));
-    return CardTCG.fromJson(json.decode(response.body));
+    final responseEN = await _get(Uri.parse(('$_urlGetCardEN/$code')));
+    Map<String, dynamic> map = json.decode(response.body);
+    Map<String, dynamic> mapEN = json.decode(responseEN.body);
+    for (String key in mapEN.keys) {
+      if (map.containsKey(key) == false) {
+        map[key] = mapEN[key];
+      } else if (map[key] == null) {
+        map[key] = mapEN[key];
+      }
+    }
+    CardTCG cardTCG = CardTCG.fromJson(map);
+    return cardTCG;
   }
 
   Future<List<CardTCGBrief>> getSetCards(String code) async {

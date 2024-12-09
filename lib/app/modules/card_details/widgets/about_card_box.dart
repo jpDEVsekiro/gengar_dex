@@ -8,17 +8,20 @@ class AboutCardBox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 18),
+      padding: const EdgeInsets.symmetric(horizontal: 30),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(cardTCG?.hp.toString() ?? ''),
-          Text(cardTCG?.id.toString() ?? ''),
-          Text(cardTCG?.category.toString() ?? ''),
-          Text(cardTCG?.description.toString() ?? ''),
-          Text(cardTCG?.illustrator.toString() ?? ''),
-          Text(cardTCG?.types.toString() ?? ''),
-          Text(cardTCG?.weaknesses.toString() ?? ''),
+          Text('Vida: ' + (cardTCG?.hp.toString() ?? '')),
+          Text('Tipo: ' +
+              (cardTCG?.types.toString() ?? '')
+                  .replaceAll('[', '')
+                  .replaceAll(']', '')),
+          Text('Fraqueza: ' +
+              (cardTCG?.weaknesses.toString() ?? '')
+                  .replaceAll('[', '')
+                  .replaceAll(']', '')),
+          Text('Recuo: ' + (cardTCG?.retreat.toString() ?? ''))
         ],
       ),
     );
