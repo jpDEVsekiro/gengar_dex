@@ -40,7 +40,7 @@ class _CardDetailsPageState extends State<CardDetailsPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
-                  cardTCGBrief.name.toString() ?? '',
+                  cardTCGBrief.name.toString(),
                   style: TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.bold,

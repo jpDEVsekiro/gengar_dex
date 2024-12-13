@@ -1,4 +1,9 @@
+import 'package:objectbox/objectbox.dart';
+
+@Entity()
 class CardTCGBrief {
+  @Id()
+  int? obxId;
   final String? id;
   final String? localId;
   final String? name;

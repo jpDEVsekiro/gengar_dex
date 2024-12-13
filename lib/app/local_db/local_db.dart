@@ -1,8 +1,6 @@
-import 'package:objectbox/objectbox.dart';
+import 'package:gengar_dex/objectbox.g.dart';
 import 'package:path/path.dart' as p;
 import 'package:path_provider/path_provider.dart';
-
-import 'objectbox.g.dart'; // created by `flutter pub run build_runner build`
 
 class ObjectBox {
   /// The Store of this app.
@@ -16,7 +14,7 @@ class ObjectBox {
   static Future<ObjectBox> create() async {
     final docsDir = await getApplicationDocumentsDirectory();
     final store =
-        await openStore(directory: p.join(docsDir.path, "obx-example"));
+        await openStore(directory: p.join(docsDir.path, 'obx_gengar_dex'));
     return ObjectBox._create(store);
   }
 }
