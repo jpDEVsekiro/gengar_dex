@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:gengar_dex/app/local_db/local_db.dart';
 import 'package:gengar_dex/app/modules/home/home_page.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  LocalDB.create();
   runApp(const MyApp());
 }
 

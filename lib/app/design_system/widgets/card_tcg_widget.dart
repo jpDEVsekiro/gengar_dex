@@ -57,32 +57,47 @@ class CardTcgWidget extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 7),
-              child: Hero(
-                tag: cardTCGBrief.id ?? '',
-                child: Container(
-                  height: (MediaQuery.sizeOf(context).width / 1.8),
-                  alignment: Alignment.center,
-                  child: CachedNetworkImage(
-                    fit: BoxFit.fitWidth,
-                    imageUrl:
-                        '${(cardTCGBrief.image ?? '') + quality.toString()}',
-                    placeholder: (context, url) => SizedBox(
-                      height: (MediaQuery.sizeOf(context).width / 1.7),
-                      child: Shimmer.fromColors(
-                        baseColor: Colors.transparent,
-                        highlightColor: Colors.black12,
-                        child: Container(
-                          color: Colors.grey[300]!,
+              child: Stack(
+                alignment: Alignment.topRight,
+                children: [
+                  Hero(
+                    tag: cardTCGBrief.id ?? '',
+                    child: Container(
+                      height: (MediaQuery.sizeOf(context).width / 1.8),
+                      alignment: Alignment.center,
+                      child: CachedNetworkImage(
+                        fit: BoxFit.fitWidth,
+                        imageUrl:
+                            '${(cardTCGBrief.image ?? '') + quality.toString()}',
+                        placeholder: (context, url) => SizedBox(
+                          height: (MediaQuery.sizeOf(context).width / 1.7),
+                          child: Shimmer.fromColors(
+                            baseColor: Colors.transparent,
+                            highlightColor: Colors.black12,
+                            child: Container(
+                              color: Colors.grey[300]!,
+                            ),
+                          ),
                         ),
+                        errorWidget: (context, url, error) {
+                          print(url);
+                          print(error);
+                          return const Icon(Icons.error);
+                        },
                       ),
                     ),
-                    errorWidget: (context, url, error) {
-                      print(url);
-                      print(error);
-                      return const Icon(Icons.error);
-                    },
                   ),
-                ),
+                  InkWell(
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: 8, right: 8),
+                      child: Icon(
+                        Icons.favorite,
+                        size: 24,
+                        color: Palette.secondary.withOpacity(0.85),
+                      ),
+                    ),
+                  ),
+                ],
               ),
             ),
             SizedBox(
